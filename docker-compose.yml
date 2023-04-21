@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  portfolio-service:
+    container_name: portfolio-container
+    restart: always
+    build: .
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo
+    networks:
+      - portfolio-network
+    environment:
+      NODE_ENV: production
+
+  mongo:
+    container_name: mongo-db
+    image: mongo
+    ports:
+      - 27018:27018
+    logging:
+      driver: none
+    command: mongod --quiet --logpath /dev/null
+    volumes:
+      - data:/data/db
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  data:

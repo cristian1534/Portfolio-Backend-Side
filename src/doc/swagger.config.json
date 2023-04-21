@@ -1,0 +1,37 @@
+{
+    "definition": {
+      "openapi": "3.0.0",
+      "info": {
+        "title": "Backend Portfolio.",
+        "version": "1.0.0",
+        "description": "Message's operations.",
+        "contact": {
+          "name": "Cristian Machuca",
+          "url": "http://www.cristian-dev.tech",
+          "email": "cmachuca32@gmail.com"
+        },
+        "servers": [
+          {
+            "url": "http://localhost:5000",
+            "description": "Portfolio Backend Service."
+          }
+        ],
+        "components": {
+          "securitySchemes": {
+            "bearerAuth": {
+              "type": "http",
+              "scheme": "bearer",
+              "bearerFormat": "JWT"
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "apis": ["./src/router/*.ts"]
+  }
+  
