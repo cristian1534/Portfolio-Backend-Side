@@ -23,7 +23,7 @@ export const is_authenticated = async (
 
     return next();
   } catch (error) {
-    console.log(error);
+    console.log(error); 
     return res.sendStatus(400);
   }
 };

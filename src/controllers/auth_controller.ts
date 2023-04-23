@@ -1,6 +1,8 @@
 import express from "express";
 import { auth_by_email, create_admin } from "../controllers/api";
 import { random, authentication } from "../helpers";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const login = async (req: express.Request, res: express.Response) => {
   try {
@@ -9,10 +11,17 @@ export const login = async (req: express.Request, res: express.Response) => {
       return res.sendStatus(400);
     }
 
-    const admin = await auth_by_email(email);
+    const admin = await auth_by_email(email).select("+authentication.salt +authentication.password");
+    ;
     if (!admin) {
       return res.sendStatus(400);
     }
+
+    const expectedHash = authentication(admin.authentication.salt, password);
+    if(admin.authentication.password !== expectedHash){
+        return res.sendStatus(403);
+    }
+
 
     const salt = random();
     admin.authentication.session_token = authentication(
@@ -23,7 +32,7 @@ export const login = async (req: express.Request, res: express.Response) => {
     await admin.save();
 
     res.cookie("ADMIN-AUTH", admin.authentication.session_token, {
-      domain: "localhost",
+      domain: "localhost" ,
       path: "/",
     });
 
