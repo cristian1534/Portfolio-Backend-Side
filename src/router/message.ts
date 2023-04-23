@@ -65,6 +65,8 @@ export default (router: express.Router) => {
  * @swagger
  * /get-messages:
  *   get:
+ *   security: 
+ *       - bearerAuth: []
  *     summary: Get all MESSAGES from Clients.
  *     tags: [MESSAGE]
  *     parameters: 
@@ -90,6 +92,8 @@ export default (router: express.Router) => {
  * @swagger
  * /delete-message/{id}:
  *   delete:
+ *   security: 
+ *       - bearerAuth: []
  *     summary: Delete message selected.
  *     tags: [MESSAGE]
  *     parameters:
