@@ -1,5 +1,6 @@
 import express from "express";
 import { create_message, get_all_messages, delete_one_message } from "../controllers/message_controller";
+import { is_authenticated, is_owner } from "../middleware/is_auth";
 
 export default (router: express.Router) => {
 
@@ -82,7 +83,7 @@ export default (router: express.Router) => {
  *         description: Server Error
  */
 
-  router.get("/get-messages", get_all_messages);
+  router.get("/get-messages", is_authenticated, get_all_messages);
 
   
 /**
@@ -112,5 +113,5 @@ export default (router: express.Router) => {
  *         description: Not Found
  */
 
-  router.delete("/delete-message/:id", delete_one_message);
+  router.delete("/delete-message/:id", is_authenticated, is_owner, delete_one_message);
 };
