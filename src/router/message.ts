@@ -7,6 +7,12 @@ export default (router: express.Router) => {
   /**
    * @swagger
    * components:
+   *   securitySchemes: 
+   *      bearerAuth:
+   *       type: http
+   *       scheme: bearer
+   *       required:
+   *         - JWT Token
    * 
    *   schemas:
    *     Message:
@@ -65,7 +71,7 @@ export default (router: express.Router) => {
  * @swagger
  * /get-messages:
  *   get:
- *   security: 
+ *     security: 
  *       - bearerAuth: []
  *     summary: Get all MESSAGES from Clients.
  *     tags: [MESSAGE]
@@ -92,7 +98,7 @@ export default (router: express.Router) => {
  * @swagger
  * /delete-message/{id}:
  *   delete:
- *   security: 
+ *     security: 
  *       - bearerAuth: []
  *     summary: Delete message selected.
  *     tags: [MESSAGE]
