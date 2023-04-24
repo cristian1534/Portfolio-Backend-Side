@@ -1,0 +1,17 @@
+### 
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "admin@portfolio.com",
+    "password": "ctnm1534"
+}
+
+### 
+GET http://localhost:5000/get-messages HTTP/1.1
+content-type: application/json
+
+
+###
+DELETE http://localhost:5000/delete-message/ HTTP/1.1
+content-type: application/json

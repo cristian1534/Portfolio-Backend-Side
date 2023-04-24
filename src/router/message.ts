@@ -71,8 +71,6 @@ export default (router: express.Router) => {
  * @swagger
  * /get-messages:
  *   get:
- *     security: 
- *       - bearerAuth: []
  *     summary: Get all MESSAGES from Clients.
  *     tags: [MESSAGE]
  *     parameters: 
@@ -91,15 +89,13 @@ export default (router: express.Router) => {
  *         description: Server Error
  */
 
-  router.get("/get-messages", is_authenticated, get_all_messages);
+  router.get("/get-messages", get_all_messages);
 
   
 /**
  * @swagger
  * /delete-message/{id}:
  *   delete:
- *     security: 
- *       - bearerAuth: []
  *     summary: Delete message selected.
  *     tags: [MESSAGE]
  *     parameters:
@@ -123,5 +119,5 @@ export default (router: express.Router) => {
  *         description: Not Found
  */
 
-  router.delete("/delete-message/:id", is_authenticated, is_owner, delete_one_message);
+  router.delete("/delete-message/:id", delete_one_message);
 };

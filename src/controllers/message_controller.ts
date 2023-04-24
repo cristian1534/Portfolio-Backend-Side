@@ -36,6 +36,7 @@ export const delete_one_message = async (
 ) => {
   try {
     const { id } = req.params;
+
     await delete_message(id);
 
     return res.sendStatus(200);
